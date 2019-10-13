@@ -1,9 +1,8 @@
-# import datetime as dt
 from django.http  import HttpResponse, Http404
 from django.shortcuts import render,redirect
 from .models import Image,Category, Location, Image
 
-# Create your views here.
+# views here.
 
 def image_list(request):
     images = Image.image_list()
@@ -34,8 +33,3 @@ def location_filter(request,image_location_id):
     images = Image.filter_by_location(id=image_location_id)
     return render(request,'location.html',{"images":images,"image_location_id":image_location_id})
 
-# def location_filter(request,locate_id):
-
-#     images = Image.objects.filter(image_location=locate_id)
-#     image_location= Location.get_image_location()
-#     return render(request,'location.html',{"images":images,"locations":location})
