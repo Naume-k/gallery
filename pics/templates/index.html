@@ -1,0 +1,95 @@
+{%extends 'base.html'%} 
+{% block content %} 
+{% load bootstrap3 %}
+{% load static%}
+{{ block.super}} 
+    {% block styles %} 
+    {% bootstrap_css %}
+<!-- <link rel="stylesheet" href="{% static 'css/index.css' %}">  -->
+{% endblock %}
+
+
+<!-- <div class="container"> -->
+
+    <!-- Looping through projects   -->
+
+    <!-- <div class="row">
+        {% for image in images %}
+
+
+        <div class=" col-md-3 card ">
+            <div  class="card-body">
+                <img src="{{image.image.url}}" class=" img img-responsive" alt="Image" style="size:100%;">
+                <div class="mask"> -->
+                    <!-- <h2 class="text-center"> {{ image.image_name }} </h2> -->
+                    <!-- <p class="text-center"> {{image.image_category}} </h2>
+                    <p class="text-center"> {{image.image_location}} </h2> -->
+
+                      <!-- <a href="{%url 'viewImage' image.id%}">View image</a>
+                </div>
+            </div>
+
+        </div> -->
+        <!-- {% endfor %} -->
+    <!-- </div>
+</div> -->
+
+
+<div class="container">
+    <div class="row">
+      <!-- Looping through image   -->
+      {% for image_item in images %}
+       <div class="col-md-4">
+      <img src="{{image_item.image.url}}" height='300px' width="300px" class="img-responsive" alt="Image" data-toggle="modal" data-target="#modal-default{{image_item.id}}">
+    </div>
+      <div class="modal fade" id="modal-default{{image_item.id}}" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <!-- <h4 class="modal-title">{{ image_item.title }}</h4> -->
+              
+            </div>
+            <div class="modal-body">
+              <img src="{{image_item.image.url}}" class="img-responsive" alt="Image" height='70%' width='70%'>
+              <p>Name:{{image_item.image_name}}</p>
+              <p>Desrciption:{{image_item.image_description}}</p>
+              <!-- <p>Posted {{image_item.pub_date|timesince}}</p> -->
+              <p>Location:{{image_item.image_location}}</p>
+              <p>Category:{{image_item.image_category}}</p>
+              <p></p>
+            </div>
+            <input class="form-control" type="text" value="http://127.0.0.1:8000{{image_item.image.url}}" id="link">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="myFunction()">copy Link</button>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+      {% empty %}
+      <div class="row">
+        <h2 class="text-center">There No image Items</h2>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
+      <div>
+        <script>
+          function myFunction(){
+            var copyText=document.getElementById("link");
+            console.log(link)
+            copyText.select();
+            copyText.setSelectionRange(0, 999999)
+            document.execCommand("copy");
+            alert("copied link:" + copyText.value);
+          }
+        </script>
+      </div>
+    </div>
+{% endblock %}
