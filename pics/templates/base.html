@@ -3,41 +3,39 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
+<head>
 
-        <title>Gallery</title>
+    <title>Gallery</title>
 
-        {% block styles %}
-        {% bootstrap_css %}
+    {% block styles %}
+    {% bootstrap_css %}
 
-        <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
+
     {% endblock %}
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        {% include "navbar.html" %}
-        {% block content %}
+    {% include "navbar.html" %}
+    {% block content %}
 
-        <div class="jumbotron" style=" color: rgb(235, 106, 46);font-style: oblique">
-            <h1 class='text-center'><strong>Welcome to my gallery</strong> </h1>
-        </div>
-        
-        {%endblock%}
-        {% block scripts %} 
-        {% bootstrap_javascript %}
-    
+    <div class="jumbotron" style=" color: rgb(235, 106, 46);font-style: oblique">
+        <h1 class='text-center'><strong>Welcome to my gallery</strong> </h1>
+    </div>
+
+    {%endblock%}
+    {% block scripts %}
+    {% bootstrap_javascript %}
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+
     {% endblock %}
 
-    </body>
+</body>
 
 </html>
-
-
