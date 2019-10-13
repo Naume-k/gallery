@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 {% load static %}
 {% block content %}
+
 <div class="container">
 
     <div class="row">
@@ -9,11 +10,9 @@
         {% else %}
         <h2> Found 0 articles for the search term {{message}}</h2>
         {% endif %}
-
     </div>
 
     <div class="row">
-
         {% if images %}
         {% for image in images %}
         <div class="col-sm-6 col-md-3">
@@ -23,11 +22,7 @@
             <h2 class="text-center"><strong>{{ image.image_name }} </strong></h2>
 
             <p class="text-center"> {{ image.image_description }} </p>
-
-
         </div>
-
-
         {% endfor %}
         {% endif %}
     </div>
