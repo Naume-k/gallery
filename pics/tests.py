@@ -31,6 +31,13 @@ class LocationTestClass(TestCase):
         self.location.save_location()
         locations = Location.objects.all()
         self.assertTrue(len(locations)>0)
+
+    def test_updating_location(self):
+        location = Location.get_location_id(self.Paris.id)
+        location.update_location('Paris')
+        location = Location.get_location_id(self.Paris.id)
+        self.assertTrue(location.location == 'Paris')
+
     def test_delete_method(self):
         self.location.save_location()
         locations = Location.objects.all()
@@ -51,10 +58,6 @@ class ImageTestClass(TestCase):
 
     def test_image_instance(self):
         self.assertTrue(isinstance(self.image, Image))
-    def tearDown(self):
-        self.image.delete_image()
-        self.category.delete_category()
-        self.location.delete_location()
 
     def test_save_method(self):
         self.image.save_image()
@@ -67,9 +70,21 @@ class ImageTestClass(TestCase):
         images = Image.get_images()
         self.assertTrue(len(images)>0)
 
+    def test_filter_by_location(self):
+       
+       self.image.save_image()
+       this_img = self.image.filter_by_location(self.image.location_id)
+       image = Image.objects.filter(location=self.image.location_id)
+       self.assertTrue(this_img, image)
+
     def test_delete_image_method(self):
         self.image.save_image()
         images = Image.objects.all()
         self.image.delete_image()
         images = Image.objects.all()
         self.assertTrue(len(images) == 0)
+
+    def tearDown(self):
+        self.image.delete_image()
+        self.category.delete_category()
+        self.location.delete_location()
